@@ -1,7 +1,8 @@
-const express = require('express'),
-    app = express(),
-    multer = require('multer'),
-    path = require('path');
+const express = require('express')
+const multer = require('multer')
+const path = require('path');
+const app = express();
+const upload = multer({});
 
 const port = process.env.PORT || 8080;
 
@@ -12,7 +13,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.post('/get-file-size', multer({}).single('file'), (req,res) => {
+app.post('/get-file-size', upload.single('file'), (req,res) => {
     res.json({size:req.file.size});
 });
 
